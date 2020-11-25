@@ -24,8 +24,6 @@ public class HealthCheckIT {
                 .uri(URI.create("http://localhost:" + port + "/actuator/health"))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-        System.out.println(response.statusCode());
         Assertions.assertEquals(200, response.statusCode());
     }
 
