@@ -36,7 +36,7 @@ public class Munros {
 
     private List<Munro> filterByCategory(Collection<Munro> munrosList, Optional<String> category) {
         List<Munro> filteredMunros = (List<Munro>)munrosList;
-        if (category.isPresent() && "MUN".equalsIgnoreCase(category.get()) || "TOP".equalsIgnoreCase(category.get())) {
+        if (category.isPresent() && ("MUN".equalsIgnoreCase(category.get()) || "TOP".equalsIgnoreCase(category.get()))) {
             filteredMunros = munrosList.stream().filter(munro -> munro.getCategory().equalsIgnoreCase(category.get()))
                     .collect(Collectors.toList());
         }
