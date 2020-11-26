@@ -11,10 +11,6 @@ public class MunroRepository {
     @Autowired
     private Munros munros;
 
-    public Collection<Munro> find(final Map<String, String> params) {
-        return filter(params);
-    }
-
     public Collection<Munro> find(Optional<String> category, Optional<Double> maxHeight,
             Optional<Double> minHeight, Optional<String> sortingCriteria,
             Optional<String> sortingOrder, Optional<Integer> maxResults) {
@@ -22,10 +18,6 @@ public class MunroRepository {
     }
 
     public Collection<Munro> findAll() {
-        return munros.getMunros();
-    }
-
-    private Collection<Munro> filter(Map<String, String> filters) {
         return munros.getMunros();
     }
 

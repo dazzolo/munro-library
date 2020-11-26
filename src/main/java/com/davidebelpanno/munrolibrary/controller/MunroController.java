@@ -23,27 +23,11 @@ public class MunroController {
     Collection<Munro> get(@RequestParam Optional<String> category, @RequestParam Optional<Double> maxHeight,
             @RequestParam Optional<Double> minHeight, @RequestParam Optional<String> sortingCriteria,
             @RequestParam Optional<String> sortingOrder, @RequestParam @Min(1) Optional<Integer> maxResults) {
-        Collection<Munro> munros = repository.findAll();
+        Collection<Munro> munros = repository.find(category, maxHeight, minHeight, sortingCriteria, sortingOrder, maxResults);
         if (munros.size() == 0) {
             return null; // return 204
         }
         return munros;
     }
-
-//    @GetMapping("/munros")
-//    Collection<Munro> getMunros(@RequestParam Map<String, String> params) {
-//        if (!validParams(params)) {
-//            return null; // return 400
-//        }
-//        Collection<Munro> munros = repository.find(params);
-//        if (munros.size() == 0) {
-//            return null; // return 204
-//        }
-//        return munros;
-//    }
-
-//    boolean validParams(Map<String, String> params) {
-//        return true;
-//    }
 }
 
