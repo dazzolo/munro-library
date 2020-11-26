@@ -1,24 +1,6 @@
 package com.davidebelpanno.munrolibrary.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.*;
-
-@Component
-public class MunroRepository {
-
-    @Autowired
-    private Munros munros;
-
-    public Collection<Munro> find(Optional<String> category, Optional<Double> maxHeight,
-            Optional<Double> minHeight, Optional<String> sortingCriteria,
-            Optional<String> sortingOrder, Optional<Integer> maxResults) {
-        return munros.getFilteredMunros(category, maxHeight, minHeight, sortingCriteria, sortingOrder, maxResults);
-    }
-
-    public Collection<Munro> findAll() {
-        return munros.getMunros();
-    }
-
+public interface MunroRepository extends JpaRepository<Munro, Long> {
 }

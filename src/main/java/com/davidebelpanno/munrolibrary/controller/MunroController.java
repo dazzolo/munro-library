@@ -2,7 +2,7 @@ package com.davidebelpanno.munrolibrary.controller;
 
 import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
 import com.davidebelpanno.munrolibrary.model.Munro;
-import com.davidebelpanno.munrolibrary.model.MunroRepository;
+import com.davidebelpanno.munrolibrary.model.MunroRepository_;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +14,9 @@ import javax.validation.constraints.Min;
 @RestController
 public class MunroController {
 
-    private final MunroRepository repository;
+    private final MunroRepository_ repository;
 
-    MunroController(MunroRepository repository) {
+    MunroController(MunroRepository_ repository) {
         this.repository = repository;
     }
 

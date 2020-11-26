@@ -1,17 +1,37 @@
 package com.davidebelpanno.munrolibrary.model;
 
+import java.util.Objects;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "munro")
 public class Munro {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String category;
     private String name;
     private double height;
     private String gridRef;
 
+    public Munro() {
+    }
+
     public Munro(String category, String name, double height, String gridRef) {
         this.category = category;
         this.name = name;
         this.height = height;
         this.gridRef = gridRef;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCategory() {
@@ -44,5 +64,26 @@ public class Munro {
 
     public void setGridRef(final String gridRef) {
         this.gridRef = gridRef;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Munro))
+            return false;
+        Munro munro = (Munro) o;
+        return Objects.equals(this.id, munro.id) && Objects.equals(this.name, munro.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name);
+    }
+
+    @Override
+    public String toString() {
+        return "Munro{" + "id=" + this.id + ", name='" + this.name + '\'' + ", category='" + this.category + '\'' + ", height='"
+                + this.height + '\'' + ", grid reference='" + this.gridRef + '\'' + '}';
     }
 }

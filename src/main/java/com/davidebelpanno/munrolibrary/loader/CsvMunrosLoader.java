@@ -5,12 +5,14 @@ import com.davidebelpanno.munrolibrary.model.Munros;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.URL;
 
-public class CsvMunrosLoader implements MunrosLoader {
+@Configuration
+public class CsvMunrosLoader {
 
     @Autowired
     private Munros munros;
@@ -22,7 +24,7 @@ public class CsvMunrosLoader implements MunrosLoader {
     private final static String TOP_CATEGORY = "TOP";
     private final static String MUNRO_CATEGORY = "MUN";
 
-    @Override public Munros loadMunros() {
+    public Munros loadMunros() {
         try {
             munros = new Munros();
             URL url = getClass().getClassLoader().getResource("./munros.csv");
@@ -35,10 +37,10 @@ public class CsvMunrosLoader implements MunrosLoader {
                 Munro munro = new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
                         Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION));
 
-                ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-                String json = ow.writeValueAsString(munro);
-
-                System.out.println(json);
+//                ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//                String json = ow.writeValueAsString(munro);
+//
+//                System.out.println(json);
 
                 munros.addMunro(munro);
             }
