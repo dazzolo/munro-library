@@ -21,7 +21,6 @@ class MunroLibraryIT {
 
     private static final String SCHEME = "http";
     private static final String HOST = "localhost";
-    private static final int PORT = 8080;
     private static final String PATH = "/munros";
     private static final String CATEGORY_PARAM_NAME = "category";
     private static final String SORTING_CRITERIA_PARAM_NAME = "sorting_criteria";

@@ -1,5 +1,6 @@
 package com.davidebelpanno.munrolibrary.controller;
 
+import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class MunroController {
             @RequestParam Optional<String> sortingOrder, @RequestParam @Min(1) Optional<Integer> maxResults) {
         Collection<Munro> munros = repository.find(category, maxHeight, minHeight, sortingCriteria, sortingOrder, maxResults);
         if (munros.size() == 0) {
-            return null; // return 204
+            throw new NoMunrosFoundException();
         }
         return munros;
     }
