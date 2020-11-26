@@ -15,6 +15,12 @@ public class MunroRepository {
         return filter(params);
     }
 
+    public Collection<Munro> find(Optional<String> category, Optional<Double> maxHeight,
+            Optional<Double> minHeight, Optional<String> sortingCriteria,
+            Optional<String> sortingOrder, Optional<Integer> maxResults) {
+        return munros.getFilteredMunros(category, maxHeight, minHeight, sortingCriteria, sortingOrder, maxResults);
+    }
+
     public Collection<Munro> findAll() {
         return munros.getMunros();
     }

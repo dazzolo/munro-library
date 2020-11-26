@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+import javax.validation.constraints.Min;
 
 @RestController
 public class MunroController {
@@ -23,16 +22,28 @@ public class MunroController {
     @GetMapping("/munros")
     Collection<Munro> get(@RequestParam Optional<String> category, @RequestParam Optional<Double> maxHeight,
             @RequestParam Optional<Double> minHeight, @RequestParam Optional<String> sortingCriteria,
-            @RequestParam Optional<String> sortingOrder, @RequestParam Optional<String> maxResults) {
+            @RequestParam Optional<String> sortingOrder, @RequestParam @Min(1) Optional<Integer> maxResults) {
         Collection<Munro> munros = repository.findAll();
-        if(munros.size() == 0) {
+        if (munros.size() == 0) {
             return null; // return 204
         }
         return munros;
     }
 
-    private boolean validParams(Map<String,String> params) {
-        return true;
-    }
+//    @GetMapping("/munros")
+//    Collection<Munro> getMunros(@RequestParam Map<String, String> params) {
+//        if (!validParams(params)) {
+//            return null; // return 400
+//        }
+//        Collection<Munro> munros = repository.find(params);
+//        if (munros.size() == 0) {
+//            return null; // return 204
+//        }
+//        return munros;
+//    }
+
+//    boolean validParams(Map<String, String> params) {
+//        return true;
+//    }
 }
 
