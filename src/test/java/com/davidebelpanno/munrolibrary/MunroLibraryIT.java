@@ -33,7 +33,7 @@ class MunroLibraryIT {
     void shouldAcceptRequestWithAllFilters() throws URISyntaxException, IOException, InterruptedException {
         final String queryString = queryParam(CATEGORY_PARAM_NAME, "top")
                 + queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "descending")
+                + queryParam(SORTING_ORDER_PARAM_NAME, "desc")
                 + queryParam(MAX_RESULTS_PARAM_NAME, "15")
                 + queryParam(MAX_HEIGHT_PARAM_NAME, "1100")
                 + queryParam(MIN_HEIGHT_PARAM_NAME, "900");
@@ -50,14 +50,14 @@ class MunroLibraryIT {
 
     @Test
     void shouldFilterMunros() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(CATEGORY_PARAM_NAME, "munro");
+        final String queryString = queryParam(CATEGORY_PARAM_NAME, "MUN");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
 
     @Test
     void shouldFilterMunroTops() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(CATEGORY_PARAM_NAME, "top");
+        final String queryString = queryParam(CATEGORY_PARAM_NAME, "TOP");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
@@ -72,7 +72,7 @@ class MunroLibraryIT {
     @Test
     void shouldSortByAscendingName() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "ascending");
+                + queryParam(SORTING_ORDER_PARAM_NAME, "asc");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
@@ -80,7 +80,7 @@ class MunroLibraryIT {
     @Test
     void shouldSortByDescendingName() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "descending");
+                + queryParam(SORTING_ORDER_PARAM_NAME, "desc");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
@@ -88,7 +88,7 @@ class MunroLibraryIT {
     @Test
     void shouldSortByAscendingHeight() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "height")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "ascending");
+                + queryParam(SORTING_ORDER_PARAM_NAME, "asc");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
@@ -96,14 +96,14 @@ class MunroLibraryIT {
     @Test
     void shouldSortByDescendingHeight() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "height")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "descending");
+                + queryParam(SORTING_ORDER_PARAM_NAME, "desc");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
 
     @Test
     void shouldIgnoreSortingIfNoCriteriaButOrderSpecified() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(SORTING_ORDER_PARAM_NAME, "ascending");
+        final String queryString = queryParam(SORTING_ORDER_PARAM_NAME, "asc");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
     }
