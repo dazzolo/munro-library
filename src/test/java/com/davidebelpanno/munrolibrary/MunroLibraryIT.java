@@ -23,11 +23,11 @@ class MunroLibraryIT {
     private static final String HOST = "localhost";
     private static final String PATH = "/munros";
     private static final String CATEGORY_PARAM_NAME = "category";
-    private static final String SORTING_CRITERIA_PARAM_NAME = "sorting_criteria";
-    private static final String SORTING_ORDER_PARAM_NAME = "sorting_order";
-    private static final String MAX_RESULTS_PARAM_NAME = "max_results";
-    private static final String MAX_HEIGHT_PARAM_NAME = "max_height";
-    private static final String MIN_HEIGHT_PARAM_NAME = "min_height";
+    private static final String SORTING_CRITERIA_PARAM_NAME = "sortingCriteria";
+    private static final String SORTING_ORDER_PARAM_NAME = "sortingOrder";
+    private static final String MAX_RESULTS_PARAM_NAME = "maxResults";
+    private static final String MAX_HEIGHT_PARAM_NAME = "maxHeight";
+    private static final String MIN_HEIGHT_PARAM_NAME = "minHeight";
 
     @Test
     void shouldAcceptRequestWithAllFilters() throws URISyntaxException, IOException, InterruptedException {
