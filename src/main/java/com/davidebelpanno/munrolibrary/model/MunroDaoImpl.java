@@ -15,7 +15,7 @@ public class MunroDaoImpl {
     public List<Munro> findByCategoryAndHeight(String category, Double maxHeight, Double minHeight, String sortingCriteria,
             String sortingOrder, Integer maxResults) {
         String query =
-                "SELECT m FROM Munro m WHERE category = " + category + " AND m.height <= " + maxHeight + " AND m.height >= "
+                "SELECT m FROM Munro m WHERE m.category = '" + category + "' AND m.height <= " + maxHeight + " AND m.height >= "
                         + minHeight + " ORDER BY " + sortingCriteria + " " + sortingOrder;
         return em.createQuery(query).setMaxResults(maxResults).getResultList();
     }
@@ -23,7 +23,7 @@ public class MunroDaoImpl {
     public List<Munro> findByHeight(Double maxHeight, Double minHeight, String sortingCriteria,
             String sortingOrder, Integer maxResults) {
         String query =
-                "SELECT m FROM Munro m WHERE category != '' AND m.height <= " + maxHeight + " AND m.height >= "
+                "SELECT m FROM Munro m WHERE m.category != '' AND m.height <= " + maxHeight + " AND m.height >= "
                         + minHeight + " ORDER BY " + sortingCriteria + " " + sortingOrder;
         return em.createQuery(query).setMaxResults(maxResults).getResultList();
     }
