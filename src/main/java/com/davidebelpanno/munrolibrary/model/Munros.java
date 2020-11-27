@@ -59,14 +59,14 @@ public class Munros {
 
     private void sort(List<Munro> munrosList, Optional<String> sortingCriteria, Optional<String> sortingOrder) {
         if (sortingCriteria.isPresent() && "name".equalsIgnoreCase(sortingCriteria.get())) {
-            if (sortingOrder.isPresent() && "descending".equalsIgnoreCase(sortingOrder.get())) {
+            if (sortingOrder.isPresent() && "desc".equalsIgnoreCase(sortingOrder.get())) {
                 munrosList.sort(Comparator.comparing(Munro::getName).reversed());
             } else {
                 munrosList.sort(Comparator.comparing(Munro::getName));
             }
         }
         if (sortingCriteria.isPresent() && "height".equalsIgnoreCase(sortingCriteria.get())) {
-            if (sortingOrder.isPresent() && "descending".equalsIgnoreCase(sortingOrder.get())) {
+            if (sortingOrder.isPresent() && "desc".equalsIgnoreCase(sortingOrder.get())) {
                 munrosList.sort(Comparator.comparing(Munro::getHeight).reversed());
             } else {
                 munrosList.sort(Comparator.comparing(Munro::getHeight));

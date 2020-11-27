@@ -2,8 +2,6 @@ package com.davidebelpanno.munrolibrary.loader;
 
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -35,11 +33,6 @@ class MunrosLoader implements CommandLineRunner {
             csvReader.readLine();
             while ((line = csvReader.readLine()) != null && line.split(",").length > 0) {
                 String[] data = line.split(",");
-
-                Munro munro = new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
-                        Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION));
-
-                System.out.println(munro);
 
                 repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
                         Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION)));
