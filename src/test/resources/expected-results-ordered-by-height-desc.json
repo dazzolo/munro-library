@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Ben Nevis",
+    "id": 133,
+    "category": "MUN",
+    "gridRef": "NN166712",
+    "height": 1344.53
+  },
+  {
+    "name": "Ben Macdui [Beinn Macduibh]",
+    "id": 297,
+    "category": "MUN",
+    "gridRef": "NN988989",
+    "height": 1309
+  },
+  {
+    "name": "Braeriach",
+    "id": 283,
+    "category": "MUN",
+    "gridRef": "NN953999",
+    "height": 1296
+  },
+  {
+    "name": "Cairn Toul",
+    "id": 288,
+    "category": "MUN",
+    "gridRef": "NN963972",
+    "height": 1291
+  },
+  {
+    "name": "Braeriach - Carn na Criche",
+    "id": 285,
+    "category": "TOP",
+    "gridRef": "NN939982",
+    "height": 1265
+  }
+]

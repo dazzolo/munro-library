@@ -3,6 +3,7 @@ package com.davidebelpanno.munrolibrary.loader;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,9 @@ class MunrosLoader implements CommandLineRunner {
     @Autowired
     private MunroRepository repository;
 
+    @Value( "${app.data.file}" )
+    private String dataFile;
+
     private final static int NAME_POSITION = 6;
     private final static int CATEGORY_POSITION = 27;
     private final static int HEIGHT_POSITION = 10;
@@ -27,7 +31,7 @@ class MunrosLoader implements CommandLineRunner {
     public void run(String... args) {
         repository.deleteAll();
         try {
-            URL url = getClass().getClassLoader().getResource("./munros.csv");
+            URL url = getClass().getClassLoader().getResource(dataFile);
             BufferedReader csvReader = new BufferedReader(new FileReader(url.getFile()));
             csvReader.readLine();
             String line;

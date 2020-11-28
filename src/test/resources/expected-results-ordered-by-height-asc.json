@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Sgurr nan Ceannaichean",
+    "id": 483,
+    "category": "MUN",
+    "gridRef": "NH087480",
+    "height": 913.43
+  },
+  {
+    "name": "Beinn a' Chlaidheimh",
+    "id": 534,
+    "category": "MUN",
+    "gridRef": "NH061775",
+    "height": 913.96
+  },
+  {
+    "name": "Sgurr nan Gillean - Knight's Peak",
+    "id": 580,
+    "category": "TOP",
+    "gridRef": "NG471254",
+    "height": 914.24
+  },
+  {
+    "name": "Meall nan Tarmachan - Creag na Caillich",
+    "id": 69,
+    "category": "TOP",
+    "gridRef": "NN562377",
+    "height": 914.3
+  },
+  {
+    "name": "Beinn Teallach",
+    "id": 371,
+    "category": "MUN",
+    "gridRef": "NN361859",
+    "height": 914.6
+  }
+]

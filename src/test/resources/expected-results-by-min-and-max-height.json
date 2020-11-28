@@ -1,0 +1,135 @@
+[
+  {
+    "name": "Beinn Iutharn Mhor",
+    "id": 228,
+    "category": "MUN",
+    "gridRef": "NO045792",
+    "height": 1045
+  },
+  {
+    "name": "Beinn a' Chaorainn North Top",
+    "id": 370,
+    "category": "TOP",
+    "gridRef": "NN383857",
+    "height": 1043
+  },
+  {
+    "name": "Beinn a' Chaorainn South Top",
+    "id": 369,
+    "category": "TOP",
+    "gridRef": "NN386845",
+    "height": 1049
+  },
+  {
+    "name": "Ben Lawers - Creag an Fhithich",
+    "id": 57,
+    "category": "TOP",
+    "gridRef": "NN635422",
+    "height": 1047
+  },
+  {
+    "name": "Ben Wyvis - Glas Leathad Mor",
+    "id": 567,
+    "category": "MUN",
+    "gridRef": "NH462683",
+    "height": 1046
+  },
+  {
+    "name": "Carn Mairg",
+    "id": 33,
+    "category": "MUN",
+    "gridRef": "NN684512",
+    "height": 1042
+  },
+  {
+    "name": "Carn a' Choire Bhoidheach - Carn an t-Sagairt Beag",
+    "id": 250,
+    "category": "TOP",
+    "gridRef": "NO216848",
+    "height": 1044.4
+  },
+  {
+    "name": "Carn an t-Sagairt Mor",
+    "id": 251,
+    "category": "MUN",
+    "gridRef": "NO208842",
+    "height": 1047
+  },
+  {
+    "name": "Chno Dearg",
+    "id": 181,
+    "category": "MUN",
+    "gridRef": "NN377741",
+    "height": 1046
+  },
+  {
+    "name": "Creag Mhor",
+    "id": 73,
+    "category": "MUN",
+    "gridRef": "NN391361",
+    "height": 1047
+  },
+  {
+    "name": "Cruach Ardrain",
+    "id": 11,
+    "category": "MUN",
+    "gridRef": "NN409212",
+    "height": 1045.9
+  },
+  {
+    "name": "Geal Charn",
+    "id": 198,
+    "category": "MUN",
+    "gridRef": "NN504811",
+    "height": 1049
+  },
+  {
+    "name": "Meall nan Tarmachan",
+    "id": 64,
+    "category": "MUN",
+    "gridRef": "NN585389",
+    "height": 1043.5
+  },
+  {
+    "name": "Sgurr Fhuar-thuill",
+    "id": 479,
+    "category": "MUN",
+    "gridRef": "NH235437",
+    "height": 1049
+  },
+  {
+    "name": "Sgurr Fiona (An Teallach) - Corrag Bhuidhe",
+    "id": 541,
+    "category": "TOP",
+    "gridRef": "NH064834",
+    "height": 1049
+  },
+  {
+    "name": "Sgurr a' Chaorachain - Bidean an Eoin Deirg",
+    "id": 488,
+    "category": "TOP",
+    "gridRef": "NH103443",
+    "height": 1046.5
+  },
+  {
+    "name": "Sgurr na Ciche",
+    "id": 399,
+    "category": "MUN",
+    "gridRef": "NM902966",
+    "height": 1040
+  },
+  {
+    "name": "Sgurr nan Ceathreamhnan - Stuc Mor",
+    "id": 435,
+    "category": "TOP",
+    "gridRef": "NH053242",
+    "height": 1041
+  },
+  {
+    "name": "Stob Coir' an Albannaich",
+    "id": 120,
+    "category": "MUN",
+    "gridRef": "NN169443",
+    "height": 1044
+  }
+]

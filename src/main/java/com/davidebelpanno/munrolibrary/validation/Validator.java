@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Validator {
 
-    private static final List<String> VALID_CATEGORIES = Arrays.asList("TOP", "MUN");
-    private static final List<String> VALID_SORTING_ORDERS = Arrays.asList("ASC", "DESC");
-    private static final List<String> VALID_SORTING_CRITERIA = Arrays.asList("NAME", "HEIGHT");
-    private static final String INVALID_CATEGORY_ERROR_MESSAGE = "Invalid category";
-    private static final String INVALID_SORTING_CRITERIA_ERROR_MESSAGE = "Invalid sorting criteria";
-    private static final String INVALID_SORTING_ORDER_ERROR_MESSAGE = "Invalid sorting order";
-    private static final String INVALID_MAX_MIN_HEIGHT_ERROR_MESSAGE = "maxHeight must be higher than minHeight";
+        private static final List<String> VALID_CATEGORIES = Arrays.asList("TOP", "MUN");
+        private static final List<String> VALID_SORTING_ORDERS = Arrays.asList("ASC", "DESC");
+        private static final List<String> VALID_SORTING_CRITERIA = Arrays.asList("NAME", "HEIGHT");
+        public static final String INVALID_CATEGORY_ERROR_MESSAGE = "Invalid category";
+        public static final String INVALID_SORTING_CRITERIA_ERROR_MESSAGE = "Invalid sorting criteria";
+        public static final String INVALID_SORTING_ORDER_ERROR_MESSAGE = "Invalid sorting order";
+        public static final String INVALID_MAX_MIN_HEIGHT_ERROR_MESSAGE = "maxHeight must be higher than minHeight";
 
     public static void isValidCategory(String category) {
         if (category != null && !category.trim().isEmpty() && !VALID_CATEGORIES.contains(category.trim().toUpperCase())) {
