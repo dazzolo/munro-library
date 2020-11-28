@@ -24,18 +24,16 @@ class MunrosLoader implements CommandLineRunner {
     private final static String MUNRO_CATEGORY = "MUN";
 
     @Override
-    public void run(String ... args) {
+    public void run(String... args) {
         repository.deleteAll();
         try {
             URL url = getClass().getClassLoader().getResource("./munros.csv");
-            String line;
             BufferedReader csvReader = new BufferedReader(new FileReader(url.getFile()));
             csvReader.readLine();
+            String line;
             while ((line = csvReader.readLine()) != null && line.split(",").length > 0) {
                 String[] data = line.split(",");
-
-                repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
-                        Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION)));
+                saveMunro(data);
             }
             csvReader.close();
         } catch (Exception e) {
@@ -43,9 +41,9 @@ class MunrosLoader implements CommandLineRunner {
         }
     }
 
-    private String getMunroInfo(String[] munro, int position) {
-        if (munro[position] != null && !munro[position].isBlank()) {
-            return munro[position];
+    private String getMunroInfo(String[] munros, int position) {
+        if (munros[position] != null && !munros[position].isBlank()) {
+            return munros[position];
         } else {
             throw new IllegalArgumentException("CSV file is malformed");
         }
@@ -53,13 +51,19 @@ class MunrosLoader implements CommandLineRunner {
 
     private String getMunroCategory(String[] munro) {
         try {
-            if (MUNRO_CATEGORY.equalsIgnoreCase(munro[CATEGORY_POSITION]) || TOP_CATEGORY.equalsIgnoreCase(munro[CATEGORY_POSITION])) {
-                return munro[CATEGORY_POSITION];
+            if (MUNRO_CATEGORY.equalsIgnoreCase(munro[CATEGORY_POSITION]) || TOP_CATEGORY
+                    .equalsIgnoreCase(munro[CATEGORY_POSITION])) {
+                return munro[CATEGORY_POSITION].toUpperCase();
             } else {
                 return "";
             }
         } catch (IndexOutOfBoundsException e) {
             return "";
         }
+    }
+
+    private void saveMunro(String[] data) {
+        repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
+                Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION)));
     }
 }

@@ -67,10 +67,10 @@ class MunroLibraryIT {
     }
 
     @Test
-    void shouldReturn422IfInvalidFilter() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400IfInvalidFilter() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(CATEGORY_PARAM_NAME, "invalidFilter");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -126,25 +126,25 @@ class MunroLibraryIT {
     }
 
     @Test
-    void shouldReturn422IfInvalidSortingCriteria() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400IfInvalidSortingCriteria() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "invalidCriteria");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
-    void shouldReturn422IfInvalidSortingOrder() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400IfInvalidSortingOrder() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
                 + queryParam(SORTING_ORDER_PARAM_NAME, "invalidOrder");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
-    void shouldIgnoreInvalidSortingOrderIfNoCriteria() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400InvalidSortingOrder() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(SORTING_ORDER_PARAM_NAME, "invalidOrder");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(200, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -180,25 +180,25 @@ class MunroLibraryIT {
     }
 
     @Test
-    void shouldReturn422IfInvalidMaxHeight() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400IfInvalidMaxHeight() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(MAX_HEIGHT_PARAM_NAME, "invalidHeight");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
-    void shouldReturn422IfInvalidMinHeight() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400IfInvalidMinHeight() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(MIN_HEIGHT_PARAM_NAME, "invalidHeight");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
-    void shouldReturn422WhenMinHeightHigherThanMaxHeight() throws IOException, InterruptedException, URISyntaxException {
+    void shouldReturn400WhenMinHeightHigherThanMaxHeight() throws IOException, InterruptedException, URISyntaxException {
         final String queryString = queryParam(MIN_HEIGHT_PARAM_NAME, "1000")
                 + queryParam(MAX_HEIGHT_PARAM_NAME, "900");
         HttpResponse response = sendRequest(getURI(queryString));
-        assertEquals(422, response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
