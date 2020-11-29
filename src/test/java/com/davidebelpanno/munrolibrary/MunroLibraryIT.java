@@ -2,10 +2,10 @@ package com.davidebelpanno.munrolibrary;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.davidebelpanno.munrolibrary.validation.Validator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
@@ -23,6 +23,18 @@ class MunroLibraryIT {
 
     @LocalServerPort
     private int port;
+
+    @Value("${app.invalid.category.message}")
+    private String invalidCategoryErrorMessage;
+
+    @Value("${app.invalid.sorting.criteria.error.message}")
+    private String invalidSortingCriteriaErrorMessage;
+
+    @Value("${app.invalid.sorting.order.error.message}")
+    private String invalidSortingOrderErrorMessage;
+
+    @Value("${app.invalid.max.min.height.error.message}")
+    private String invalidMaxMinHeightErrorMessage;
 
     private static final String SCHEME = "http";
     private static final String HOST = "localhost";
@@ -80,7 +92,7 @@ class MunroLibraryIT {
         final String queryString = queryParam(CATEGORY_PARAM_NAME, "invalidFilter");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(400, response.statusCode());
-        assertEquals(Validator.INVALID_CATEGORY_ERROR_MESSAGE, response.body());
+        assertEquals(invalidCategoryErrorMessage, response.body());
     }
 
     @Test
@@ -160,7 +172,7 @@ class MunroLibraryIT {
         final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "invalidCriteria");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(400, response.statusCode());
-        assertEquals(Validator.INVALID_SORTING_CRITERIA_ERROR_MESSAGE, response.body());
+        assertEquals(invalidSortingCriteriaErrorMessage, response.body());
     }
 
     @Test
@@ -169,7 +181,7 @@ class MunroLibraryIT {
                 + queryParam(SORTING_ORDER_PARAM_NAME, "invalidOrder");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(400, response.statusCode());
-        assertEquals(Validator.INVALID_SORTING_ORDER_ERROR_MESSAGE, response.body());
+        assertEquals(invalidSortingOrderErrorMessage, response.body());
     }
 
     @Test
@@ -226,7 +238,7 @@ class MunroLibraryIT {
                 + queryParam(MAX_HEIGHT_PARAM_NAME, "900");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(400, response.statusCode());
-        assertEquals(Validator.INVALID_MAX_MIN_HEIGHT_ERROR_MESSAGE, response.body());
+        assertEquals(invalidMaxMinHeightErrorMessage, response.body());
     }
 
     @Test

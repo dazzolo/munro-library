@@ -4,6 +4,7 @@ import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroDaoImpl;
 import com.davidebelpanno.munrolibrary.validation.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,9 @@ import javax.validation.constraints.Min;
 
 @RestController
 public class MunroController {
+
+    @Autowired
+    private Validator validator;
 
     private final MunroDaoImpl repository;
 
@@ -48,10 +52,10 @@ public class MunroController {
     }
 
     private void validate(Optional<String> category, String sortingCriteria, String sortingOrder, Double maxHeight, Double minHeight) {
-        category.ifPresent(Validator::isValidCategory);
-        Validator.isValidSortingCriteria(sortingCriteria.trim().toUpperCase());
-        Validator.isValidSortingOrder(sortingOrder.trim().toUpperCase());
-        Validator.isValidMaxAndMinHeight(maxHeight, minHeight);
+        category.ifPresent(validator::isValidCategory);
+        validator.isValidSortingCriteria(sortingCriteria.trim().toUpperCase());
+        validator.isValidSortingOrder(sortingOrder.trim().toUpperCase());
+        validator.isValidMaxAndMinHeight(maxHeight, minHeight);
     }
 }
 
