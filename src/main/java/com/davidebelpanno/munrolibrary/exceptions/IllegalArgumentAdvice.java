@@ -1,4 +1,4 @@
-package com.davidebelpanno.munrolibrary.controller;
+package com.davidebelpanno.munrolibrary.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

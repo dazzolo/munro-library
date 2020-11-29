@@ -31,27 +31,33 @@ public class MunroController {
             @RequestParam(defaultValue = "4.9E-324") Optional<Double> minHeight,
             @RequestParam(defaultValue = "name") Optional<String> sortingCriteria,
             @RequestParam(defaultValue = "asc") Optional<String> sortingOrder,
-            @RequestParam(defaultValue = "1000") @Min(value = 1, message = "maxResults can't be less than 1") Optional<Integer> maxResults) {
+            @RequestParam(defaultValue = "1000")
+            @Min(value = 1, message = "maxResults can't be less than 1") Optional<Integer> maxResults) {
 
         validate(category, sortingCriteria.get(), sortingOrder.get(), maxHeight.get(), minHeight.get());
 
+        return getMunros(category, maxHeight.get(), minHeight.get(), sortingCriteria.get().trim().toUpperCase(),
+                sortingOrder.get().trim().toUpperCase(), maxResults.get());
+    }
+
+    Collection<Munro> getMunros(Optional<String> category, Double maxHeight, Double minHeight, String sortingCriteria,
+            String sortingOrder, Integer maxResults) {
         Collection<Munro> munros;
         if (category.isPresent()) {
-            munros = repository.findByCategoryAndHeight(category.get().trim().toUpperCase(), maxHeight.get(), minHeight.get(),
-                    sortingCriteria.get().trim().toUpperCase(),
-                    sortingOrder.get().trim().toUpperCase(), maxResults.get());
+            munros = repository
+                    .findByCategoryAndHeight(category.get().trim().toUpperCase(), maxHeight, minHeight, sortingCriteria,
+                            sortingOrder, maxResults);
         } else {
-            munros = repository.findByHeight(maxHeight.get(), minHeight.get(), sortingCriteria.get().trim().toUpperCase(),
-                    sortingOrder.get().trim().toUpperCase(), maxResults.get());
+            munros = repository.findByHeight(maxHeight, minHeight, sortingCriteria, sortingOrder, maxResults);
         }
-
         if (munros.size() == 0) {
             throw new NoMunrosFoundException();
         }
         return munros;
     }
 
-    private void validate(Optional<String> category, String sortingCriteria, String sortingOrder, Double maxHeight, Double minHeight) {
+    private void validate(Optional<String> category, String sortingCriteria, String sortingOrder, Double maxHeight,
+            Double minHeight) {
         category.ifPresent(validator::isValidCategory);
         validator.isValidSortingCriteria(sortingCriteria.trim().toUpperCase());
         validator.isValidSortingOrder(sortingOrder.trim().toUpperCase());

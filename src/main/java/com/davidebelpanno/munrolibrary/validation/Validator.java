@@ -30,7 +30,7 @@ public class Validator {
     private String invalidMaxMinHeightErrorMessage;
 
     public void isValidCategory(String category) {
-        if (category != null && !category.trim().isEmpty() && !validCategories.contains(category.trim().toUpperCase())) {
+        if (category == null || !validCategories.contains(category.trim().toUpperCase())) {
             throw new IllegalArgumentException(invalidCategoryErrorMessage);
         }
     }

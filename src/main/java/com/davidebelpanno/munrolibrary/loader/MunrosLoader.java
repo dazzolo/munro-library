@@ -20,12 +20,12 @@ class MunrosLoader implements CommandLineRunner {
     @Value( "${app.data.file}" )
     private String dataFile;
 
-    private final static int NAME_POSITION = 6;
-    private final static int CATEGORY_POSITION = 27;
-    private final static int HEIGHT_POSITION = 10;
-    private final static int GRID_REF_POSITION = 14;
-    private final static String TOP_CATEGORY = "TOP";
-    private final static String MUNRO_CATEGORY = "MUN";
+    final static int NAME_POSITION = 6;
+    final static int CATEGORY_POSITION = 27;
+    final static int HEIGHT_POSITION = 10;
+    final static int GRID_REF_POSITION = 14;
+    final static String TOP_CATEGORY = "TOP";
+    final static String MUNRO_CATEGORY = "MUN";
 
     @Override
     public void run(String... args) {
@@ -45,7 +45,7 @@ class MunrosLoader implements CommandLineRunner {
         }
     }
 
-    private String getMunroInfo(String[] munros, int position) {
+    String getMunroInfo(String[] munros, int position) {
         if (munros[position] != null && !munros[position].isBlank()) {
             return munros[position];
         } else {
@@ -53,7 +53,7 @@ class MunrosLoader implements CommandLineRunner {
         }
     }
 
-    private String getMunroCategory(String[] munro) {
+    String getMunroCategory(String[] munro) {
         try {
             if (MUNRO_CATEGORY.equalsIgnoreCase(munro[CATEGORY_POSITION]) || TOP_CATEGORY
                     .equalsIgnoreCase(munro[CATEGORY_POSITION])) {

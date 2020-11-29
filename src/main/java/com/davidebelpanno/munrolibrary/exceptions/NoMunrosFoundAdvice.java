@@ -1,4 +1,4 @@
-package com.davidebelpanno.munrolibrary.controller;
+package com.davidebelpanno.munrolibrary.exceptions;
 
 import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
 import org.springframework.http.HttpStatus;
