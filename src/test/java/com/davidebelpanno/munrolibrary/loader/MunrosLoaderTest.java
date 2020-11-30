@@ -4,12 +4,21 @@ import static com.davidebelpanno.munrolibrary.utils.Constants.MUNRO_CATEGORY;
 import static com.davidebelpanno.munrolibrary.utils.Constants.TOP_CATEGORY;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.davidebelpanno.munrolibrary.model.MunroRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.util.ReflectionTestUtils;
 
 class MunrosLoaderTest {
 
+    @InjectMocks
     MunrosLoader testee;
+
+    @Mock
+    private MunroRepository repository;
 
     private String[] validMunro = { "name", TOP_CATEGORY, "1000", "gridRef" };
     private String[] invalidMunro = { "name", "", null };
@@ -22,7 +31,7 @@ class MunrosLoaderTest {
         validMunroWithCategory[27] = MUNRO_CATEGORY;
         validMunroTopWithCategory[27] = TOP_CATEGORY;
         munroWithInvalidCategory[27] = "invalidCategory";
-        testee = new MunrosLoader();
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -65,5 +74,35 @@ class MunrosLoaderTest {
     void getMunroCategoryShouldReturnEmptyStringIfInvalidValue() {
         String category = testee.getMunroCategory(munroWithInvalidCategory);
         assertEquals("", category);
+    }
+
+    @Test
+    void shouldLoadDatabase() throws Exception {
+        ReflectionTestUtils.setField(testee, "dataFile", "/test_munros.csv");
+        testee.run();
+    }
+
+    @Test
+    void shouldHandleEmptyDataFile() throws Exception {
+        ReflectionTestUtils.setField(testee, "dataFile", "/empty-data-file.csv");
+        testee.run();
+    }
+
+    @Test
+    void shouldIgnoreFileFirstLine() throws Exception {
+        ReflectionTestUtils.setField(testee, "dataFile", "/invalid-first-line-file.csv");
+        testee.run();
+    }
+
+    @Test
+    void shouldThrowExceptionWhenNoDataFile() {
+        ReflectionTestUtils.setField(testee, "dataFile", "/fileNotFound.csv");
+        assertThrows(Exception.class, () -> testee.run());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenInvalidDataFile() {
+        ReflectionTestUtils.setField(testee, "dataFile", "/invalid-data-file.csv");
+        assertThrows(Exception.class, () -> testee.run());
     }
 }

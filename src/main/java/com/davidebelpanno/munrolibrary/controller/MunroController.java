@@ -1,7 +1,6 @@
 package com.davidebelpanno.munrolibrary.controller;
 
 import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
-import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroDaoImpl;
 import com.davidebelpanno.munrolibrary.validation.Validator;
 import org.slf4j.Logger;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.Min;
 
@@ -30,7 +29,7 @@ public class MunroController {
     }
 
     @GetMapping("/munros")
-    Collection<Munro> get(@RequestParam Optional<String> category,
+    List get(@RequestParam Optional<String> category,
             @RequestParam(defaultValue = "1.7976931348623157E308") Optional<Double> maxHeight,
             @RequestParam(defaultValue = "4.9E-324") Optional<Double> minHeight,
             @RequestParam(defaultValue = "name") Optional<String> sortingCriteria,
@@ -44,9 +43,9 @@ public class MunroController {
                 sortingOrder.get().trim().toUpperCase(), maxResults.get());
     }
 
-    Collection<Munro> getMunros(Optional<String> category, double maxHeight, double minHeight, String sortingCriteria,
+    List getMunros(Optional<String> category, double maxHeight, double minHeight, String sortingCriteria,
             String sortingOrder, int maxResults) {
-        Collection<Munro> munros;
+        List munros;
         if (category.isPresent()) {
             munros = repository
                     .findByCategoryAndHeight(category.get().trim().toUpperCase(), maxHeight, minHeight, sortingCriteria,

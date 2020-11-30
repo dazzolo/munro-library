@@ -28,7 +28,7 @@ class MunrosLoader implements CommandLineRunner {
     private String dataFile;
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws Exception {
         logger.info("Setting up database...");
         repository.deleteAll();
         try {
@@ -44,7 +44,7 @@ class MunrosLoader implements CommandLineRunner {
             csvReader.close();
         } catch (Exception e) {
             logger.error("Failed to load the DB: " + e.getMessage());
-            e.printStackTrace();
+            throw new Exception("There was a problem while populating the database");
         }
     }
 
