@@ -12,13 +12,13 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class MunroDaoImpl {
 
-    Logger logger = LoggerFactory.getLogger(MunroController.class);
+    private Logger logger = LoggerFactory.getLogger(MunroController.class);
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<Munro> findByCategoryAndHeight(String category, Double maxHeight, Double minHeight, String sortingCriteria,
-            String sortingOrder, Integer maxResults) {
+    public List findByCategoryAndHeight(String category, double maxHeight, double minHeight, String sortingCriteria,
+            String sortingOrder, int maxResults) {
         String query =
                 "SELECT m FROM Munro m WHERE m.category = '" + category + "' AND m.height <= " + maxHeight + " AND m.height >= "
                         + minHeight + " ORDER BY " + sortingCriteria + " " + sortingOrder;
@@ -26,8 +26,8 @@ public class MunroDaoImpl {
         return em.createQuery(query).setMaxResults(maxResults).getResultList();
     }
 
-    public List<Munro> findByHeight(Double maxHeight, Double minHeight, String sortingCriteria,
-            String sortingOrder, Integer maxResults) {
+    public List findByHeight(double maxHeight, double minHeight, String sortingCriteria,
+            String sortingOrder, int maxResults) {
         String query =
                 "SELECT m FROM Munro m WHERE m.category != '' AND m.height <= " + maxHeight + " AND m.height >= "
                         + minHeight + " ORDER BY " + sortingCriteria + " " + sortingOrder;

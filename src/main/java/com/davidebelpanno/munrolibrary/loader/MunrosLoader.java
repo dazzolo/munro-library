@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.Arrays;
 
 @Component
 class MunrosLoader implements CommandLineRunner {
@@ -73,7 +74,7 @@ class MunrosLoader implements CommandLineRunner {
     }
 
     private void saveMunro(String[] data) {
-        logger.debug("Adding record: " + data);
+        logger.debug("Adding record: " + Arrays.toString(data));
         repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
                 Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION)));
     }

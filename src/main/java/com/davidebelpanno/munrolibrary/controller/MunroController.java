@@ -44,8 +44,8 @@ public class MunroController {
                 sortingOrder.get().trim().toUpperCase(), maxResults.get());
     }
 
-    Collection<Munro> getMunros(Optional<String> category, Double maxHeight, Double minHeight, String sortingCriteria,
-            String sortingOrder, Integer maxResults) {
+    Collection<Munro> getMunros(Optional<String> category, double maxHeight, double minHeight, String sortingCriteria,
+            String sortingOrder, int maxResults) {
         Collection<Munro> munros;
         if (category.isPresent()) {
             munros = repository
@@ -62,8 +62,8 @@ public class MunroController {
         return munros;
     }
 
-    private void validate(Optional<String> category, String sortingCriteria, String sortingOrder, Double maxHeight,
-            Double minHeight) {
+    private void validate(Optional<String> category, String sortingCriteria, String sortingOrder, double maxHeight,
+            double minHeight) {
         category.ifPresent(validator::isValidCategory);
         validator.isValidSortingCriteria(sortingCriteria.trim().toUpperCase());
         validator.isValidSortingOrder(sortingOrder.trim().toUpperCase());
