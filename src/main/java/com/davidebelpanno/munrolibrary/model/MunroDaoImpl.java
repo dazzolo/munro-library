@@ -1,6 +1,7 @@
 package com.davidebelpanno.munrolibrary.model;
 
 import com.davidebelpanno.munrolibrary.controller.MunroController;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class MunroDaoImpl {
 
-    org.slf4j.Logger logger = LoggerFactory.getLogger(MunroController.class);
+    Logger logger = LoggerFactory.getLogger(MunroController.class);
 
     @PersistenceContext
     private EntityManager em;

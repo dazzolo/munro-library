@@ -3,20 +3,19 @@ package com.davidebelpanno.munrolibrary.loader;
 import com.davidebelpanno.munrolibrary.controller.MunroController;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroRepository;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.net.URL;
+import java.io.*;
 
 @Component
 class MunrosLoader implements CommandLineRunner {
 
-    org.slf4j.Logger logger = LoggerFactory.getLogger(MunroController.class);
+    Logger logger = LoggerFactory.getLogger(MunroController.class);
 
     @Autowired
     private MunroRepository repository;
@@ -36,9 +35,9 @@ class MunrosLoader implements CommandLineRunner {
         logger.info("Setting up database...");
         repository.deleteAll();
         try {
-            URL url = getClass().getClassLoader().getResource(dataFile);
-            logger.info("Reading data from file: " + url.toString());
-            BufferedReader csvReader = new BufferedReader(new FileReader(url.getFile()));
+            logger.info("Reading data from file: " + dataFile);
+            InputStream inputStream = getClass().getResourceAsStream(dataFile);
+            BufferedReader csvReader = new BufferedReader(new InputStreamReader(inputStream));
             csvReader.readLine();
             String line;
             while ((line = csvReader.readLine()) != null && line.split(",").length > 0) {

@@ -4,6 +4,7 @@ import com.davidebelpanno.munrolibrary.exceptions.NoMunrosFoundException;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroDaoImpl;
 import com.davidebelpanno.munrolibrary.validation.Validator;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import javax.validation.constraints.Min;
 @RestController
 public class MunroController {
 
-    org.slf4j.Logger logger = LoggerFactory.getLogger(MunroController.class);
+    Logger logger = LoggerFactory.getLogger(MunroController.class);
 
     @Autowired
     private Validator validator;
