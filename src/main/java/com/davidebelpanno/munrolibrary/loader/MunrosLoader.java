@@ -1,8 +1,11 @@
 package com.davidebelpanno.munrolibrary.loader;
 
+import static com.davidebelpanno.munrolibrary.utils.Constants.*;
+
 import com.davidebelpanno.munrolibrary.controller.MunroController;
 import com.davidebelpanno.munrolibrary.model.Munro;
 import com.davidebelpanno.munrolibrary.model.MunroRepository;
+import com.davidebelpanno.munrolibrary.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +27,6 @@ class MunrosLoader implements CommandLineRunner {
     @Value("${app.data.file}")
     private String dataFile;
 
-    final static int NAME_POSITION = 6;
-    final static int CATEGORY_POSITION = 27;
-    final static int HEIGHT_POSITION = 10;
-    final static int GRID_REF_POSITION = 14;
-    final static String TOP_CATEGORY = "TOP";
-    final static String MUNRO_CATEGORY = "MUN";
-
     @Override
     public void run(String... args) {
         logger.info("Setting up database...");
@@ -47,6 +43,7 @@ class MunrosLoader implements CommandLineRunner {
             }
             csvReader.close();
         } catch (Exception e) {
+            logger.error("Failed to load the DB: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -75,7 +72,7 @@ class MunrosLoader implements CommandLineRunner {
 
     private void saveMunro(String[] data) {
         logger.debug("Adding record: " + Arrays.toString(data));
-        repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, NAME_POSITION),
+        repository.save(new Munro(getMunroCategory(data), getMunroInfo(data, Constants.NAME_POSITION),
                 Double.parseDouble(getMunroInfo(data, HEIGHT_POSITION)), getMunroInfo(data, GRID_REF_POSITION)));
     }
 }

@@ -1,5 +1,6 @@
 package com.davidebelpanno.munrolibrary;
 
+import static com.davidebelpanno.munrolibrary.utils.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.json.JSONArray;
@@ -54,9 +55,9 @@ class MunroLibraryIT {
 
     @Test
     void shouldAcceptRequestWithAllFilters() throws URISyntaxException, IOException, InterruptedException {
-        final String queryString = queryParam(CATEGORY_PARAM_NAME, "TOP")
-                + queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "desc")
+        final String queryString = queryParam(CATEGORY_PARAM_NAME, TOP_CATEGORY)
+                + queryParam(SORTING_CRITERIA_PARAM_NAME, NAME_SORTING_CRITERIA)
+                + queryParam(SORTING_ORDER_PARAM_NAME, DESCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "15")
                 + queryParam(MAX_HEIGHT_PARAM_NAME, "1100")
                 + queryParam(MIN_HEIGHT_PARAM_NAME, "900");
@@ -73,18 +74,18 @@ class MunroLibraryIT {
 
     @Test
     void shouldFilterMunros() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(CATEGORY_PARAM_NAME, "MUN");
+        final String queryString = queryParam(CATEGORY_PARAM_NAME, MUNRO_CATEGORY);
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
-        assertFalse(response.body().toString().contains("TOP"));
+        assertFalse(response.body().toString().contains(TOP_CATEGORY));
     }
 
     @Test
     void shouldFilterMunroTops() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(CATEGORY_PARAM_NAME, "TOP");
+        final String queryString = queryParam(CATEGORY_PARAM_NAME, TOP_CATEGORY);
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
-        assertFalse(response.body().toString().contains("MUN"));
+        assertFalse(response.body().toString().contains(MUNRO_CATEGORY));
     }
 
     @Test
@@ -97,8 +98,8 @@ class MunroLibraryIT {
 
     @Test
     void shouldSortByAscendingName() throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "asc")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, NAME_SORTING_CRITERIA)
+                + queryParam(SORTING_ORDER_PARAM_NAME, ASCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "2");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -109,8 +110,8 @@ class MunroLibraryIT {
 
     @Test
     void shouldSortByDescendingName() throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "desc")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, NAME_SORTING_CRITERIA)
+                + queryParam(SORTING_ORDER_PARAM_NAME, DESCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "10");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -121,8 +122,8 @@ class MunroLibraryIT {
 
     @Test
     void shouldSortByAscendingHeight() throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "height")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "asc")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, HEIGHT_SORTING_CRITERIA)
+                + queryParam(SORTING_ORDER_PARAM_NAME, ASCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "5");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -133,8 +134,8 @@ class MunroLibraryIT {
 
     @Test
     void shouldSortByDescendingHeight() throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "height")
-                + queryParam(SORTING_ORDER_PARAM_NAME, "desc")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, HEIGHT_SORTING_CRITERIA)
+                + queryParam(SORTING_ORDER_PARAM_NAME, DESCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "5");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -146,7 +147,7 @@ class MunroLibraryIT {
     @Test
     void shouldDefaultToNameIfNoSortingCriteriaSpecified()
             throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_ORDER_PARAM_NAME, "desc")
+        final String queryString = queryParam(SORTING_ORDER_PARAM_NAME, DESCENDING_ORDER)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "10");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -158,7 +159,7 @@ class MunroLibraryIT {
     @Test
     void shouldDefaultToAscendingIfNoSortingOrderSpecified()
             throws IOException, InterruptedException, URISyntaxException, JSONException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "height")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, HEIGHT_SORTING_CRITERIA)
                 + queryParam(MAX_RESULTS_PARAM_NAME, "5");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(200, response.statusCode());
@@ -177,7 +178,7 @@ class MunroLibraryIT {
 
     @Test
     void shouldReturn400IfInvalidSortingOrder() throws IOException, InterruptedException, URISyntaxException {
-        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, "name")
+        final String queryString = queryParam(SORTING_CRITERIA_PARAM_NAME, NAME_SORTING_CRITERIA)
                 + queryParam(SORTING_ORDER_PARAM_NAME, "invalidOrder");
         HttpResponse response = sendRequest(getURI(queryString));
         assertEquals(400, response.statusCode());

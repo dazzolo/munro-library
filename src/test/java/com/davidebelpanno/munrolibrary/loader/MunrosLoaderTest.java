@@ -1,5 +1,7 @@
 package com.davidebelpanno.munrolibrary.loader;
 
+import static com.davidebelpanno.munrolibrary.utils.Constants.MUNRO_CATEGORY;
+import static com.davidebelpanno.munrolibrary.utils.Constants.TOP_CATEGORY;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +11,7 @@ class MunrosLoaderTest {
 
     MunrosLoader testee;
 
-    private String[] validMunro = { "name", MunrosLoader.TOP_CATEGORY, "1000", "gridRef" };
+    private String[] validMunro = { "name", TOP_CATEGORY, "1000", "gridRef" };
     private String[] invalidMunro = { "name", "", null };
     private String[] validMunroWithCategory = new String[28];
     private String[] validMunroTopWithCategory = new String[28];
@@ -17,8 +19,8 @@ class MunrosLoaderTest {
 
     @BeforeEach
     void setup() {
-        validMunroWithCategory[27] = MunrosLoader.MUNRO_CATEGORY;
-        validMunroTopWithCategory[27] = MunrosLoader.TOP_CATEGORY;
+        validMunroWithCategory[27] = MUNRO_CATEGORY;
+        validMunroTopWithCategory[27] = TOP_CATEGORY;
         munroWithInvalidCategory[27] = "invalidCategory";
         testee = new MunrosLoader();
     }
@@ -44,13 +46,13 @@ class MunrosLoaderTest {
     @Test
     void getMunroCategoryShouldReturnValueIfTop() {
         String category = testee.getMunroCategory(validMunroTopWithCategory);
-        assertEquals(MunrosLoader.TOP_CATEGORY, category);
+        assertEquals(TOP_CATEGORY, category);
     }
 
     @Test
     void getMunroCategoryShouldReturnValueIfMunro() {
         String category = testee.getMunroCategory(validMunroWithCategory);
-        assertEquals(MunrosLoader.MUNRO_CATEGORY, category);
+        assertEquals(MUNRO_CATEGORY, category);
     }
 
     @Test

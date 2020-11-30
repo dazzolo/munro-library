@@ -1,5 +1,6 @@
 package com.davidebelpanno.munrolibrary.validation;
 
+import static com.davidebelpanno.munrolibrary.utils.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,25 +21,25 @@ class ValidatorTest {
 
     @BeforeEach
     void setup() {
-        validCategories.add("TOP");
-        validCategories.add("MUN");
-        validSortingOrders.add("ASC");
-        validSortingOrders.add("DESC");
-        validSortingCriteria.add("NAME");
-        validSortingCriteria.add("HEIGHT");
+        validCategories.add(TOP_CATEGORY);
+        validCategories.add(MUNRO_CATEGORY);
+        validSortingOrders.add(ASCENDING_ORDER);
+        validSortingOrders.add(DESCENDING_ORDER);
+        validSortingCriteria.add(NAME_SORTING_CRITERIA.toUpperCase());
+        validSortingCriteria.add(HEIGHT_SORTING_CRITERIA.toUpperCase());
         testee = new Validator();
     }
 
     @Test
     void shouldNotThrowExceptionForValidMunroCategory() {
         ReflectionTestUtils.setField(testee, "validCategories", validCategories);
-        testee.isValidCategory("MUN");
+        testee.isValidCategory(MUNRO_CATEGORY);
     }
 
     @Test
     void shouldNotThrowExceptionForValidMunroTopCategory() {
         ReflectionTestUtils.setField(testee, "validCategories", validCategories);
-        testee.isValidCategory("TOP");
+        testee.isValidCategory(TOP_CATEGORY);
     }
 
     @Test
@@ -60,13 +61,13 @@ class ValidatorTest {
     @Test
     void shouldNotThrowExceptionForValidNameSortingCriteria() {
         ReflectionTestUtils.setField(testee, "validSortingCriteria", validSortingCriteria);
-        testee.isValidSortingCriteria("name");
+        testee.isValidSortingCriteria(NAME_SORTING_CRITERIA);
     }
 
     @Test
     void shouldNotThrowExceptionForValidHeightSortingCriteria() {
         ReflectionTestUtils.setField(testee, "validSortingCriteria", validSortingCriteria);
-        testee.isValidSortingCriteria("height");
+        testee.isValidSortingCriteria(HEIGHT_SORTING_CRITERIA);
     }
 
     @Test
@@ -82,13 +83,13 @@ class ValidatorTest {
     @Test
     void shouldNotThrowExceptionForValidAscSortingOrder() {
         ReflectionTestUtils.setField(testee, "validSortingOrders", validSortingOrders);
-        testee.isValidSortingOrder("asc");
+        testee.isValidSortingOrder(ASCENDING_ORDER);
     }
 
     @Test
     void shouldNotThrowExceptionForValidDescSortingOrder() {
         ReflectionTestUtils.setField(testee, "validSortingOrders", validSortingOrders);
-        testee.isValidSortingOrder("desc");
+        testee.isValidSortingOrder(DESCENDING_ORDER);
     }
 
     @Test

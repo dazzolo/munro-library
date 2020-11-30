@@ -1,5 +1,7 @@
 package com.davidebelpanno.munrolibrary.controller;
 
+import static com.davidebelpanno.munrolibrary.utils.Constants.MUNRO_CATEGORY;
+import static com.davidebelpanno.munrolibrary.utils.Constants.TOP_CATEGORY;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -22,8 +24,8 @@ import java.util.Optional;
 class MunroControllerTest {
 
     MunroController testee;
-    private final Munro munroTop = new Munro("TOP", "test-munro-top", 150, "test-grid-ref");
-    private final Munro munro = new Munro("MUN", "test-munro", 100, "test-grid-ref");
+    private final Munro munroTop = new Munro(TOP_CATEGORY, "test-munro-top", 150, "test-grid-ref");
+    private final Munro munro = new Munro(MUNRO_CATEGORY, "test-munro", 100, "test-grid-ref");
 
     @Mock
     private MunroDaoImpl mockRepository;
