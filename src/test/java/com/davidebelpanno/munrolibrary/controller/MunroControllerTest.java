@@ -16,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +58,7 @@ class MunroControllerTest {
     void shouldReturnMunrosByCategoryWhenCategoryNonEmpty() {
         when(mockRepository.findByCategoryAndHeight(anyString(), anyDouble(), anyDouble(), anyString(), anyString(), anyInt()))
                 .thenReturn(findByCategoryAndHeightData());
-        Collection<Munro> munros =
+        List munros =
                 testee.getMunros(Optional.of(anyString()), anyDouble(), anyDouble(), anyString(), anyString(), anyInt());
         assertFalse(munros.isEmpty());
         assertEquals(munroTop, munros.iterator().next());
@@ -69,7 +68,7 @@ class MunroControllerTest {
     void shouldReturnMunrosByHeightWhenCategoryEmpty() {
         when(mockRepository.findByHeight(anyDouble(), anyDouble(), anyString(), anyString(), anyInt()))
                 .thenReturn(findByHeightData());
-        Collection<Munro> munros =
+        List munros =
                 testee.getMunros(Optional.empty(), anyDouble(), anyDouble(), anyString(), anyString(), anyInt());
         assertFalse(munros.isEmpty());
         assertEquals(munro, munros.iterator().next());
